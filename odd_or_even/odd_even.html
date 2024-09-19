@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <h2>even or odd number checker</h2>
+    
+    <button id="loadNumber">Load the number from thedata.json</button>
+    
+    <p id="numberDisplay">Number: <span id="number"></span></p>
+    <p id="result"></p>
+    
+    <script>
+        $(document).ready(function(){
+            $('#loadNumber').click(function(){ 
+                $.getJSON('data.json', function(data) {
+                    var number = data.number;
+                    $('#number').text(number);
+                    if(number % 2 === 0) {
+                        $('#result').text(number + " is even.");
+                    } else {
+                        $('#result').text(number + " is odd.");
+                    }
+                }).fail(function() {
+                    $('#result').text("Failed to load JSON data.");
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
